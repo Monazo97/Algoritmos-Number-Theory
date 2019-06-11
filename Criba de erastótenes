@@ -1,0 +1,32 @@
+//En el vector primos guardamos los primos menores que sqrt(n).
+//En el vector primosf guardamos los primos menores que n.
+
+vector <long> primos, primosf;
+
+void criba(long n) 
+{ 
+    bool prime[n+1]; 
+    memset(prime, true, sizeof(prime)); 
+  
+    for (long p=2; p*p<=n; p++) 
+    { 
+        if (prime[p] == true) 
+        { 
+            primos.push_back(p);
+            for (int i=p*p; i<=n; i += p) 
+                prime[i] = false; 
+        } 
+    } 
+	
+	for(long i=2; i<=n; i++) if(prime[i]) primosf.push_back(i);
+	for(long i=0; i<primosf.size(); i++) cout << primosf[i] << " ";
+    cout << endl;
+	
+    for(long i=0; i<primos.size(); i++) cout << primos[i] << " ";
+    cout << endl;
+} 
+
+int main() {
+	criba(100);
+	return 0;
+}
